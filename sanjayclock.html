@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	#currenttime {
+		text-align: center;
+	}
+</style>	
+
+</head>
+<body>
+	<div id="time">
+		<h1 id="currenttime"></h1>
+	</div>
+	<div id="alarmtime">
+		<div>
+			<select id="ghanta"></select>
+		</div>
+		</div>
+			<select id="minutes"></select>
+		</div>
+		<div>
+			<select id="daytime">
+				<option value="AM">AM</option>
+				<option value="PM">PM</option>
+			</select>	
+		</div>
+	
+		<div id="buttons">
+			<div>
+				<button id="set" onClick="setAlarm()">Set Alarm</button>
+			</div> 
+			<div>
+				<button id="clear" onClick='clearAlarm()'>Clear</button>
+			</div>
+		</div>	
+
+			<script type="text/javascript">
+    
+// This is to display the current time in the web broswer using built in java function.
+     function now(){
+            var date= new Date();
+            var hr = date.getHours();
+            var min = date.getMinutes();
+            var sec = date.getSeconds();
+            var timeOfDay = "Am";
+            if (hr == 0){
+                hr = 12;
+            }
+            if (hr > 12) {
+                hr = hr - 12;
+                timeOfDay = "PM";
+            }
+            hr = (hr < 10 ) ? "0"  + hr : hr;
+            min = (min < 10 ) ? "0"  + min : min;
+            sec = (sec < 10 ) ? "0" + sec : sec;
+            var time = hr + ':' +  min  + ':' +  sec  + "  " + timeOfDay;
+            document.getElementById("currenttime").innerHTML = time;
+            // document.getElementById("currenttime").textcontent = time;
+            setTimeout (now, 1000);
+}  now();
+
+// These two function create and options menu in java creating an array and displaying the lenght of the arrray as your options. It also adds a zero infront of the number if it is smaller than 10.
+function hrMenu(){
+
+	var select = document.getElementById('ghanta');
+	var hrs = 12
+
+	for (i=1; i <= hrs; i++) {
+		select.options[select.options.length] = new Option( i < 10 ? "0" + i : i, i);
+		
+	}
+}
+hrMenu();
+
+function minMenu(){
+  
+	var select = document.getElementById('minutes');
+	var min = 59;
+
+	for (i=0; i <= min; i++) {
+		select.options[select.options.length] = new Option(i < 10 ? "0" + i : i, i);
+	}
+}
+minMenu();
+// The variables for this function are set by identifying the element by id
+function setAlarm() {
+	var hours = document.getElementById('ghanta');
+	var minute = document.getElementById('minutes');
+	var ap = document.getElementById('daytime');
+
+	var selecHr = document.getElementById('ghanta').innerHTML=hours;
+	var selecMin = document.getElementById('minutes').innerHTML=minute;
+	var selecDay = document.getElementById('daytime').innerHTML=ap;
+    var ATime = selecHr + ":" + selecMin + ":"  + selecDay;
+
+}
+
+
+	
+
+
+</script>
+</body>	
+</html>
